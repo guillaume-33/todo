@@ -14,7 +14,7 @@ class UserController extends AbstractController
 {
 
     /**
-     * @Route("/inscription", name="user_incription")
+     * @Route("/inscription", name="user_inscription")
      */
     public function incription(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher){
         $user= new User();
