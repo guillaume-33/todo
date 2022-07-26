@@ -1,0 +1,23 @@
+{% extends'base.html.twig' %}
+
+{% block main %}
+
+    <form action="{{ path('update_liste') }}">
+
+        <label for="Todo">selection liste:</label>
+
+        <select name="liste" >
+            <option value="Mes listes">Selection</option>
+                {% for liste in listes %}
+                    <option value="{{ liste.id }}">{{ liste.titre }} pour le {{ liste.date|date('d/m/Y') }}</option>
+                {% endfor %}
+        </select>
+
+        <input type="submit">
+    </form>
+
+    <div>
+        <button><a href="">Créer liste</a></button>
+    </div>
+
+{% endblock %}

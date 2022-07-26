@@ -13,6 +13,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
 
+
+    //methode permettant de créer un utilisateur et de l'enregister dans la basse de bonnes.
+    // le mot de passe est protégé par le UserPasswordHasher, qui "crypte' le mot de passe.
     /**
      * @Route("/inscription", name="user_inscription")
      */

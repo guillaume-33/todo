@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+   <h1>{{ liste.titre }}</h1>
+    <p>A faire pour le {{ liste.date|date('d/m/Y') }}</p>
+    <p>{{ liste.message }}</p>
+
+        <form method="GET">
+            <div>
+                <input type="radio" id="fait" name="statut" value="fait" class="case fait">
+                <label for="Statut">Fait</label>
+            </div>
+            <div>
+                <input type="radio" id="faire" name="statut" value="fait partiellement" class=" case partiellement">
+                <label for="Statut">Fait partiellement</label>
+            </div>
+            <div>
+                <input type="radio" id="impossible" name="statut" value="impossible a faire" class="case impossible">
+                <label for="Statut">Impossible à faire</label>
+            </div>
+
+
+{#Bouton caché, mermete de récuperer l'id de la liste sans l'afficher#}
+            <input type="hidden" name="liste" value="{{ liste.id }}">
+            <input type="submit">
+        </form>
+
+{% endblock %}

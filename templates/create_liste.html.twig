@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+{#{{ form(form) }}#}
+
+    <form>
+
+        <label for="destinataire"> Destinataire</label>
+        <input><input>
+
+        <label for="titre">Titre</label>
+        <input type="text" id="titre" name="titre">
+
+        <label for="message" >Message</label>
+        <textarea id="message" name="message" rows="10" cols="45"></textarea>
+
+        <label for="date">A faire pour le</label>
+        <input type="date" id="date" name="date">
+
+        <button type="submit">Confirmer</button>
+    </form>
+
+{% endblock %}
