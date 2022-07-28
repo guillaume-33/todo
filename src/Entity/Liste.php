@@ -26,6 +26,9 @@ class Liste
     #[ORM\Column(length: 255)]
     private ?string $statut = null;
 
+    #[ORM\ManyToOne]
+    private ?User $destinataire = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Liste
     public function setStatut(string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getDestinataire(): ?User
+    {
+        return $this->destinataire;
+    }
+
+    public function setDestinataire(?User $destinataire): self
+    {
+        $this->destinataire = $destinataire;
 
         return $this;
     }

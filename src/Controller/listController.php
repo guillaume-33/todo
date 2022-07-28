@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/app")
+ */
 class listController extends AbstractController
 {
 
@@ -30,11 +33,16 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
 /**
  * @Route ("/update_liste", name="update_liste")
  */
-    public function updateListe(ListeRepository $listeRepository, EntityManagerInterface $entityManager, Request $request, ){
+    public function updateListe(ListeRepository $listeRepository, EntityManagerInterface $entityManager, Request $request, )
+    {
+
+        $user = $this->getUser();
 
         $id=$request->query->get('liste');
 
         $liste = $listeRepository->find($id);
+
+
 
         if($request->query->has('statut')) {
             $statut = $request->query->get('statut');

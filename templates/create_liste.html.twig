@@ -1,23 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block main %}
-{#{{ form(form) }}#}
+{{form_start(form) }}
 
-    <form>
+    {{ form_label(form.destinataire, 'Destinataire ', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.destinataire, {'attr': {'class': 'form-liste-destinataire-widget'}}) }}
 
-        <label for="destinataire"> Destinataire</label>
-        <input><input>
+    {{ form_label(form.titre, 'Titre', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.titre, {'attr': {'class': 'form-liste-titre-widget'}}) }}
 
-        <label for="titre">Titre</label>
-        <input type="text" id="titre" name="titre">
+    {{ form_label(form.message, 'Message', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.message, {'attr': {'class': 'form-liste-message-widget'}}) }}
 
-        <label for="message" >Message</label>
-        <textarea id="message" name="message" rows="10" cols="45"></textarea>
+    {{ form_label(form.date, 'date', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.date, {'attr': {'class': 'form-liste-date-widget'}}) }}
 
-        <label for="date">A faire pour le</label>
-        <input type="date" id="date" name="date">
 
-        <button type="submit">Confirmer</button>
-    </form>
+
+{{form_end(form) }}
 
 {% endblock %}
