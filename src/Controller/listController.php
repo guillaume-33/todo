@@ -29,34 +29,36 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
 }
 
 
-// je recupere l'id de la liste grace a $id=request->query->get(liste veux dire quo'n cherche dans la table liste )
+// je recupere l'id de la liste grace a $id=request->query->get('liste')(liste veux dire qu'on cherche dans la table liste )
 /**
  * @Route ("/update_liste", name="update_liste")
  */
     public function updateListe(ListeRepository $listeRepository, EntityManagerInterface $entityManager, Request $request, )
     {
 
-        $user = $this->getUser();
-
         $id=$request->query->get('liste');
 
         $liste = $listeRepository->find($id);
 
+        $user = $this->getUser();
+        if($user=== $liste->getDestinataire()){ //verifie que l'utilisateur soit bien le destinataire
+            if($request->query->has('statut')) {
+                $statut = $request->query->get('statut');
 
+                $liste->setStatut($statut);
 
-        if($request->query->has('statut')) {
-            $statut = $request->query->get('statut');
+                $entityManager->persist($liste);
+                $entityManager->flush();
+            }
+            $this->addFlash("success", "Liste mise a jour");
 
-            $liste->setStatut($statut);
-
-            $entityManager->persist($liste);
-            $entityManager->flush();
+            return $this->render("update_liste.html.twig",[
+                'liste'=>$liste
+            ]);
+        }else{
+          return $this->redirectToRoute('user_listes.html.twig');
         }
-           $this->addFlash("success", "Liste mise a jour");
 
-        return $this->render("update_liste.html.twig",[
-                            'liste'=>$liste
-        ]);
     }
 
 

@@ -3,6 +3,9 @@
 {% block main %}
 {{form_start(form) }}
 
+    {{ form_label(form.categorie, 'Categorie ', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.categorie, {'attr': {'class': 'form-liste-categorie-widget'}}) }}
+
     {{ form_label(form.destinataire, 'Destinataire ', {'label_attr': {'class': 'form-label'}}) }}
     {{ form_widget(form.destinataire, {'attr': {'class': 'form-liste-destinataire-widget'}}) }}
 

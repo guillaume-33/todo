@@ -17,6 +17,7 @@ class ListeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('categorie')
             ->add('destinataire',EntityType::class,[
                     "class" =>User::class, // pris depuis l'entité, ne pas taper trop vite au clavier !!!
                     'choice_label'=>'email'

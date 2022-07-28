@@ -29,6 +29,9 @@ class Liste
     #[ORM\ManyToOne]
     private ?User $destinataire = null;
 
+    #[ORM\ManyToOne(inversedBy: 'listes')]
+    private ?CategorieListe $categorie = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Liste
     public function setDestinataire(?User $destinataire): self
     {
         $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?CategorieListe
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?CategorieListe $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
