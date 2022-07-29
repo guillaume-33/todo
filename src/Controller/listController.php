@@ -35,7 +35,6 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
  */
     public function updateListe(ListeRepository $listeRepository, EntityManagerInterface $entityManager, Request $request, )
     {
-
         $id=$request->query->get('liste');
 
         $liste = $listeRepository->find($id);
