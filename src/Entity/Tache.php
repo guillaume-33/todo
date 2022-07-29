@@ -33,6 +33,9 @@ class Tache
     #[ORM\ManyToOne(inversedBy: 'listes')]
     private ?Projet $categorie = null;
 
+    #[ORM\ManyToOne]
+    private ?User $expediteur = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +109,18 @@ class Tache
     public function setCategorie(?Projet $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getExpediteur(): ?User
+    {
+        return $this->expediteur;
+    }
+
+    public function setExpediteur(?User $expediteur): self
+    {
+        $this->expediteur = $expediteur;
 
         return $this;
     }

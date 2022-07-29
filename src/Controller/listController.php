@@ -21,7 +21,11 @@ class listController extends AbstractController
      * @Route("/user_listes" , name="user_listes")
      */
 public function readlistTodo(ListeRepository $listeRepository, Request $request){
-   $listes=$listeRepository->findAll();
+    $user=$this->getUser();
+
+
+   $listes=$listeRepository->findby(['destinataire'=>$user,
+                                    'statut']);
 
     return $this->render('user_listes.html.twig', [
                 'listes'=>$listes
@@ -39,9 +43,9 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
 
         $liste = $listeRepository->find($id);
 
-        $user = $this->getUser();
-        if($user=== $liste->getDestinataire()){ //verifie que l'utilisateur soit bien le destinataire
-            if($request->query->has('statut')) {
+        $user = $this->getUser();//je recupère l'utilisateur en ligne
+        if($user=== $liste->getDestinataire()) { //verifie que l'utilisateur soit bien le destinataire
+            if ($request->query->has('statut')) {
                 $statut = $request->query->get('statut');
 
                 $liste->setStatut($statut);
@@ -51,13 +55,12 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
             }
             $this->addFlash("success", "Liste mise a jour");
 
-            return $this->render("update_liste.html.twig",[
-                'liste'=>$liste
+            return $this->render("update_liste.html.twig", [
+                'liste' => $liste
             ]);
         }else{
-          return $this->redirectToRoute('user_listes.html.twig');
+            return $this->render('user_listes.html.twig');
         }
-
     }
 
 
@@ -71,7 +74,7 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
         $form =$this->createForm(ListeType::class, $liste);
         $form->handleRequest($request);
 
-        if( $form->isSubmitted() && $form ->isSubmitted()){
+        if( $form->isSubmitted() && $form ->isValid()){
 
             $entityManager->persist($liste);
             $entityManager->flush();
