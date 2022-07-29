@@ -22,10 +22,7 @@ class listController extends AbstractController
      */
 public function readlistTodo(ListeRepository $listeRepository, Request $request){
     $user=$this->getUser();
-
-
-   $listes=$listeRepository->findby(['destinataire'=>$user,
-                                    'statut']);
+   $listes=$listeRepository->findby(['destinataire'=>$user]);
 
     return $this->render('user_listes.html.twig', [
                 'listes'=>$listes
