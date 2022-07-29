@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Liste;
+use App\Entity\Tache;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Liste>
+ * @extends ServiceEntityRepository<Tache>
  *
- * @method Liste|null find($id, $lockMode = null, $lockVersion = null)
- * @method Liste|null findOneBy(array $criteria, array $orderBy = null)
- * @method Liste[]    findAll()
- * @method Liste[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Tache|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tache|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tache[]    findAll()
+ * @method Tache[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ListeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Liste::class);
+        parent::__construct($registry, Tache::class);
     }
 
-    public function add(Liste $entity, bool $flush = false): void
+    public function add(Tache $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ListeRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Liste $entity, bool $flush = false): void
+    public function remove(Tache $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

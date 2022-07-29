@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategorieListeRepository::class)]
-class CategorieListe
+class Projet
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +18,7 @@ class CategorieListe
     #[ORM\Column(length: 255)]
     private ?string $titre = null;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Liste::class)]
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Tache::class)]
     private Collection $listes;
 
     public function __construct()
@@ -44,14 +44,14 @@ class CategorieListe
     }
 
     /**
-     * @return Collection<int, Liste>
+     * @return Collection<int, Tache>
      */
     public function getListes(): Collection
     {
         return $this->listes;
     }
 
-    public function addListe(Liste $liste): self
+    public function addListe(Tache $liste): self
     {
         if (!$this->listes->contains($liste)) {
             $this->listes[] = $liste;
@@ -61,7 +61,7 @@ class CategorieListe
         return $this;
     }
 
-    public function removeListe(Liste $liste): self
+    public function removeListe(Tache $liste): self
     {
         if ($this->listes->removeElement($liste)) {
             // set the owning side to null (unless already changed)

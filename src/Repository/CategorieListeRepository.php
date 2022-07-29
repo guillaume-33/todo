@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\CategorieListe;
+use App\Entity\Projet;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<CategorieListe>
+ * @extends ServiceEntityRepository<Projet>
  *
- * @method CategorieListe|null find($id, $lockMode = null, $lockVersion = null)
- * @method CategorieListe|null findOneBy(array $criteria, array $orderBy = null)
- * @method CategorieListe[]    findAll()
- * @method CategorieListe[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Projet|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Projet|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Projet[]    findAll()
+ * @method Projet[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class CategorieListeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CategorieListe::class);
+        parent::__construct($registry, Projet::class);
     }
 
-    public function add(CategorieListe $entity, bool $flush = false): void
+    public function add(Projet $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class CategorieListeRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(CategorieListe $entity, bool $flush = false): void
+    public function remove(Projet $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 

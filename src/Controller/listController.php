@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Liste;
+use App\Entity\Tache;
 use App\Form\ListeType;
 use App\Repository\ListeRepository;
 
@@ -66,7 +66,7 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
      */
     public function createListe(Request $request, EntityManagerInterface $entityManager){
 
-        $liste = new Liste();
+        $liste = new Tache();
 
         $form =$this->createForm(ListeType::class, $liste);
         $form->handleRequest($request);

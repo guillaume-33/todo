@@ -7,7 +7,8 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ListeRepository::class)]
-class Liste
+
+class Tache
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,7 +31,7 @@ class Liste
     private ?User $destinataire = null;
 
     #[ORM\ManyToOne(inversedBy: 'listes')]
-    private ?CategorieListe $categorie = null;
+    private ?Projet $categorie = null;
 
     public function getId(): ?int
     {
@@ -97,12 +98,12 @@ class Liste
         return $this;
     }
 
-    public function getCategorie(): ?CategorieListe
+    public function getCategorie(): ?Projet
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?CategorieListe $categorie): self
+    public function setCategorie(?Projet $categorie): self
     {
         $this->categorie = $categorie;
 

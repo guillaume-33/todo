@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Liste;
+use App\Entity\Tache;
 
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -34,7 +34,7 @@ class ListeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Liste::class,
+            'data_class' => Tache::class,
         ]);
     }
 }
