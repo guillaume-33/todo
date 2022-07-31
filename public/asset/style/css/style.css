@@ -105,6 +105,11 @@ nav li:hover a {
   padding-top: 35%;
 }
 
+.para_home {
+  text-align: center;
+  padding: 5rem;
+}
+
 input {
   display: block;
   width: 100%;

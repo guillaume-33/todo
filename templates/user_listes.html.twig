@@ -12,13 +12,44 @@
                     <option value="{{ liste.id }}">{{ liste.titre }} pour le {{ liste.date|date('d/m/Y') }}</option>
                 {% endfor %}
         </select>
-
-
         <input type="submit">
     </form>
 
     <div>
         <button><a href="">Créer liste</a></button>
+    </div>
+
+{#    <div>#}
+
+{#        {% set listes =[] %}#}
+{#        {% for liste in listes %}#}
+{#            {%  set liste=liste|merge({ categorie:liste.categorie, titre:liste.titre }) %}#}
+{#        {% endfor %}#}
+{#        {% dump listes %}#}
+{#    </div>#}
+
+    </div>
+    <div class="tableau">
+        <table>
+            <tr>
+{#                <th>Expéditeur</th>#}
+                <th>Titre</th>
+                <th>Pour le</th>
+                <th>Statut</th>
+                <th>Message</th>
+                <th>Voir la liste</th>
+            </tr>
+            {% for liste in listes %}
+            <tr>
+    {#                <td>{{ liste.expediteur }}</td>#}
+                <td>{{ liste.titre }}</td>
+                <td>{{ liste.date|date('d/m/Y') }}</td>
+                <td>{{ liste.statut }}</td>
+                <td>{{ liste.message }}</td>
+                <td><input type="submit"></td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 
 {% endblock %}
