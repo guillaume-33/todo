@@ -12,13 +12,27 @@
     <header>
 
         <nav class="nav_header">
-            <img class="logo_header" src= "../public/asset/img/logo/logo_small.png">
+            <a href="{{ path('home') }}"><img class="logo_header" src="{{ asset('../public/asset/img/logo/logo_small.png') }}" ></a>
+
             <ul class="ul_header">
+                {% if app.user %}
+                <li class="li_header"><a class="a_header" href="{{ path('user_listes') }}">Mes listes</a></li>
+                <li class="li_header"><a class="a_header" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                {% else %}
                 <li class="li_header"><a class="a_header" href="{{ path('app_login') }}">Connexion</a></li>
                 <li class="li_header"><a class="a_header" href="{{ path("user_inscription") }}">Créer compte</a></li>
+                {% endif %}
             </ul>
         </nav>
+        {% if app.user %}
+         <p>Bonjour {{ app.user.prenom }}</p>
+        {% endif %}
     </header>
         {% block main %}{% endblock %}
+
+    <footer>
+
+    </footer>
     </body>
+
 </html>
