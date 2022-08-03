@@ -9,6 +9,7 @@
             <tr>
                 <th type hidden>ID</th>
                 <th>Expéditeur</th>
+{#                <th>Projet</th>#}
                 <th>Titre</th>
                 <th>Pour le</th>
                 <th>Statut</th>
@@ -19,6 +20,7 @@
             <tr>
                 <td type hidden>{{ liste.id }}</td>
                 <td>{{ liste.expediteur.prenom ~' '~ liste.expediteur.nom }}</td>
+{#                <td>{{ liste.categorie.projet }}</td>#}
                 <td>{{ liste.titre }}</td>
                 <td>{{ liste.date|date('d/m/Y') }}</td>
                 <td>{{ liste.statut }}</td>
