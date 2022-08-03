@@ -8,6 +8,7 @@
         <table>
             <tr>
                 <th type hidden>ID</th>
+                <th>Expéditeur</th>
                 <th>Titre</th>
                 <th>Pour le</th>
                 <th>Statut</th>
@@ -17,6 +18,7 @@
             {% for liste in listes %}
             <tr>
                 <td type hidden>{{ liste.id }}</td>
+                <td>{{ liste.expediteur.prenom ~' '~ liste.expediteur.nom }}</td>
                 <td>{{ liste.titre }}</td>
                 <td>{{ liste.date|date('d/m/Y') }}</td>
                 <td>{{ liste.statut }}</td>
@@ -34,6 +36,7 @@
             <table>
                 <tr>
                     <th type hidden>ID</th>
+                    <th>Destinataire</th>
                     <th>Titre</th>
                     <th>Pour le</th>
                     <th>Statut</th>
@@ -44,6 +47,7 @@
             {% for listesend in listesends %}
                 <tr>
                     <td type hidden>{{ listesend.id }}</td>
+                    <td>{{ listesend.destinataire.prenom~' '~ listesend.destinataire.nom}}</td>
                     <td>{{ listesend.titre }}</td>
                     <td>{{ listesend.date|date('d/m/Y') }}</td>
                     <td>{{ listesend.statut }}</td>
