@@ -90,7 +90,7 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
     /**
      * @Route("/admin_update" , name="admin_update")
      */
-  public function adminupdatelistes(ListeRepository $listeRepository, Request $request, EntityManagerInterface $entityManager){
+  public function adminupdateListes(ListeRepository $listeRepository, Request $request, EntityManagerInterface $entityManager){
       $id=$request->query->get('id');
 
       $liste = $listeRepository->find($id);
@@ -112,6 +112,19 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
       }else{
           return $this->render('user_listes.html.twig');
       }
+  }
+
+
+    /**
+     * @Route("/delete_liste", name="delete_liste")
+     */
+  public function deleteListe(Request $request, ListeRepository $listeRepository, EntityManagerInterface $entityManager){
+      $id=$request->query->get('id');
+      $liste= $listeRepository->find($id);
+      $entityManager->remove($liste);
+      $entityManager->flush();
+      $this->addFlash('succes', 'liste suprimée');
+      return $this->redirectToRoute('user_listes');
   }
 
 
