@@ -22,10 +22,13 @@ class listController extends AbstractController
      */
 public function readlistTodo(ListeRepository $listeRepository, Request $request){
     $user=$this->getUser();
-   $listes=$listeRepository->findby(['destinataire'=>$user]);
+   $listes=$listeRepository->findby(['destinataire'=>$user]); //affiche listes recues
+
+    $listesends=$listeRepository->findBy(['expediteur'=>$user]); // affiche listes envoyées
 
     return $this->render('user_listes.html.twig', [
-                'listes'=>$listes
+                'listes'=>$listes,
+                'listesends'=>$listesends
     ]);
 }
 
@@ -36,7 +39,8 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
  */
     public function updateListe(ListeRepository $listeRepository, EntityManagerInterface $entityManager, Request $request, )
     {
-        $id=$request->query->get('liste');
+        $id=$request->query->get('id');
+
 
         $liste = $listeRepository->find($id);
 
@@ -81,4 +85,6 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
         return $this->render('create_liste.html.twig',[
             'form'=>$form->createView()]);
     }
+
+
 }

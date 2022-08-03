@@ -1,38 +1,13 @@
 {% extends'base.html.twig' %}
 
 {% block main %}
+    <section id="listes_recues">
+    <h2>Mes listes recues</h2>
 
-    <form action="{{ path('update_liste') }}">
-
-        <label for="Todo">selection liste:</label>
-
-        <select name="liste" >
-            <option value="Mes listes">Selection</option>
-                {% for liste in listes %}
-                    <option value="{{ liste.id }}">{{ liste.titre }} pour le {{ liste.date|date('d/m/Y') }}</option>
-                {% endfor %}
-        </select>
-        <input type="submit">
-    </form>
-
-    <div>
-        <button><a href="">Créer liste</a></button>
-    </div>
-
-{#    <div>#}
-
-{#        {% set listes =[] %}#}
-{#        {% for liste in listes %}#}
-{#            {%  set liste=liste|merge({ categorie:liste.categorie, titre:liste.titre }) %}#}
-{#        {% endfor %}#}
-{#        {% dump listes %}#}
-{#    </div>#}
-
-    </div>
     <div class="tableau">
         <table>
             <tr>
-{#                <th>Expéditeur</th>#}
+                <th type hidden>ID</th>
                 <th>Titre</th>
                 <th>Pour le</th>
                 <th>Statut</th>
@@ -41,15 +16,49 @@
             </tr>
             {% for liste in listes %}
             <tr>
-    {#                <td>{{ liste.expediteur }}</td>#}
+                <td type hidden>{{ liste.id }}</td>
                 <td>{{ liste.titre }}</td>
                 <td>{{ liste.date|date('d/m/Y') }}</td>
                 <td>{{ liste.statut }}</td>
                 <td>{{ liste.message }}</td>
-                <td><a href={{ path('update_liste', {'id':liste.id}) }}>Voir la liste</a> </td>
+                <td><a href="{{ path('update_liste', {'id':liste.id}) }}">Voir la liste</a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
+    </section>
+    <section id="listes_envoyées">
+        <h2>Mes listes envoyées</h2>
+
+        <div class="tableau">
+            <table>
+                <tr>
+                    <th type hidden>ID</th>
+                    <th>Titre</th>
+                    <th>Pour le</th>
+                    <th>Statut</th>
+                    <th>Message</th>
+                    <th>Editer la liste</th>
+                    <th>Supprimer la liste</th>
+                </tr>
+            {% for listesend in listesends %}
+                <tr>
+                    <td type hidden>{{ listesend.id }}</td>
+                    <td>{{ listesend.titre }}</td>
+                    <td>{{ listesend.date|date('d/m/Y') }}</td>
+                    <td>{{ listesend.statut }}</td>
+                    <td>{{ listesend.message }}</td>
+                    <td><a href="{{ path('update_liste', {'id':listesend.id}) }}">Editer </a></td>
+                    <td><a href="{{ path('update_liste', {'id':listesend.id}) }}">Supprimer </a></td>
+
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+
+</section>
+
+
+
 
 {% endblock %}

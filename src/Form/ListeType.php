@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Projet;
 use App\Entity\Tache;
 
 use App\Entity\User;
@@ -21,7 +22,10 @@ class ListeType extends AbstractType
                         'class'=>User::class,
                         'choice_label'=>'prenom'
             ])
-            ->add('categorie')
+            ->add('categorie', EntityType::class,[
+                'class'=>Projet::class,
+                'choice_label'=>'titre'
+            ])
             ->add('destinataire',EntityType::class,[
                     "class" =>User::class, // pris depuis l'entité, ne pas taper trop vite au clavier !!!
                     'choice_label'=>'email'
