@@ -48,7 +48,7 @@
                     <td>{{ listesend.date|date('d/m/Y') }}</td>
                     <td>{{ listesend.statut }}</td>
                     <td>{{ listesend.message }}</td>
-                    <td><a href="{{ path('update_liste', {'id':listesend.id}) }}">Editer </a></td>
+                    <td><a href="{{ path('admin_update', {'id':listesend.id}) }}">Editer </a></td>
                     <td><a href="{{ path('update_liste', {'id':listesend.id}) }}">Supprimer </a></td>
 
                 </tr>

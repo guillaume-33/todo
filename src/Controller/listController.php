@@ -87,4 +87,32 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
     }
 
 
+    /**
+     * @Route("/admin_update" , name="admin_update")
+     */
+  public function adminupdatelistes(ListeRepository $listeRepository, Request $request, EntityManagerInterface $entityManager){
+      $id=$request->query->get('id');
+
+      $liste = $listeRepository->find($id);
+      $form= $this->createForm(ListeType::class, $liste);
+      $form->handleRequest($request);
+
+      $user = $this->getUser();//je recupère l'utilisateur en ligne
+      if($user=== $liste->getExpediteur()) { //verifie que l'utilisateur soit bien l'expediteur
+          if ($form ->isSubmitted()) {
+
+              $entityManager->persist($liste);
+              $entityManager->flush();
+          }
+          $this->addFlash("success", "Liste mise a jour");
+
+          return $this->render("admin_update.html.twig", [
+              'form' => $form->createView()
+          ]);
+      }else{
+          return $this->render('user_listes.html.twig');
+      }
+  }
+
+
 }
