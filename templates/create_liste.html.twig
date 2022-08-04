@@ -2,13 +2,15 @@
 
 {% block main %}
 
+{#<div>#}
+{#    {{ form_start(form2) }}#}
+{#    {{ form_end(form2) }}#}
+{#</div>#}
+
 
 {{form_start(form) }}
 
-{#    <div>#}
-{#        {{ form_label(form.projet, 'Projet', {'label_attr':{'class':'form-label'}}) }}#}
-{#        {{ form_widget(form.categorie, {'attr': {'class': 'form-liste-categorie-widget'}}) }}#}
-{#    </div>#}
+
 <div>
     {{ form_label(form.categorie, 'Projet ', {'label_attr': {'class': 'form-label'}}) }}
     {{ form_widget(form.categorie, {'attr': {'class': 'form-liste-categorie-widget'}}) }}

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Projet;
 use App\Entity\Tache;
 use App\Form\ListeType;
+use App\Form\ProjetType;
 use App\Repository\ListeRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -71,19 +73,25 @@ public function readlistTodo(ListeRepository $listeRepository, Request $request)
     public function createListe(Request $request, EntityManagerInterface $entityManager){
 
         $liste = new Tache();
+//        $projet = new Projet();
 
-        $form =$this->createForm(ListeType::class, $liste);
+
+        $form =$this->createForm(ListeType::class, $liste );
+//        $form2 = $this->createForm(ProjetType::class, $projet);
         $form->handleRequest($request);
+//        $form2->handleRequest($request);
 
         if( $form->isSubmitted() && $form ->isValid()){
 
             $entityManager->persist($liste);
+//            $entityManager->persist($projet);
             $entityManager->flush();
 
             $this->addFlash('success', 'ajoutée');
         }
         return $this->render('create_liste.html.twig',[
             'form'=>$form->createView()]);
+//            'form2'=>$form2->createView()]);
     }
 
 

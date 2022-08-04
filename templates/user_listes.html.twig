@@ -4,8 +4,8 @@
     <section id="listes_recues">
     <h2>Mes listes recues</h2>
 
-    <div class="tableau">
-        <table>
+    <div class="table-wrapper">
+        <table class="fl-table">
             <tr>
                 <th type hidden>ID</th>
                 <th>Expéditeur</th>
@@ -23,7 +23,15 @@
 {#                <td>{{ liste.categorie.projet }}</td>#}
                 <td>{{ liste.titre }}</td>
                 <td>{{ liste.date|date('d/m/Y') }}</td>
-                <td>{{ liste.statut }}</td>
+                {% if liste.statut=='fait' %}
+                    <td class="fait">{{ liste.statut }}</td>
+                {% elseif liste.statut == 'fait partiellement' %}
+                    <td class="partiellement">{{ liste.statut }}</td>
+                {% elseif liste.statut == 'a faire' %}
+                    <td class="faire">{{ liste.statut }}</td>
+                {% else %}
+                    <td class="impossible">{{ liste.statut }}</td>
+                {% endif %}
                 <td>{{ liste.message }}</td>
                 <td><a href="{{ path('update_liste', {'id':liste.id}) }}">Voir la liste</a></td>
             </tr>
@@ -34,8 +42,8 @@
     <section id="listes_envoyées">
         <h2>Mes listes envoyées</h2>
 
-        <div class="tableau">
-            <table>
+        <div class="table-wrapper">
+            <table class="fl-table">
                 <tr>
                     <th type hidden>ID</th>
                     <th>Destinataire</th>
