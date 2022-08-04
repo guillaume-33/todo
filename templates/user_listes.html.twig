@@ -23,6 +23,7 @@
 {#                <td>{{ liste.categorie.projet }}</td>#}
                 <td>{{ liste.titre }}</td>
                 <td>{{ liste.date|date('d/m/Y') }}</td>
+
                 {% if liste.statut=='fait' %}
                     <td class="fait">{{ liste.statut }}</td>
                 {% elseif liste.statut == 'fait partiellement' %}
@@ -32,6 +33,7 @@
                 {% else %}
                     <td class="impossible">{{ liste.statut }}</td>
                 {% endif %}
+
                 <td>{{ liste.message }}</td>
                 <td><a href="{{ path('update_liste', {'id':liste.id}) }}">Voir la liste</a></td>
             </tr>
@@ -54,17 +56,28 @@
                     <th>Editer la liste</th>
                     <th>Supprimer la liste</th>
                 </tr>
+
+                
             {% for listesend in listesends %}
                 <tr>
                     <td type hidden>{{ listesend.id }}</td>
                     <td>{{ listesend.destinataire.prenom~' '~ listesend.destinataire.nom}}</td>
                     <td>{{ listesend.titre }}</td>
                     <td>{{ listesend.date|date('d/m/Y') }}</td>
-                    <td>{{ listesend.statut }}</td>
+
+                    {% if listesend.statut =='fait' %}
+                        <td class="fait">{{ listesend.statut }}</td>
+                    {% elseif listesend.statut =='fait partiellement'  %}
+                        <td class="partiellement">{{ listesend.statut }}</td>
+                    {% elseif listesend.statut == 'a faire' %}
+                        <td class="faire">{{ listesend.statut }}</td>
+                    {% else %}
+                        <td class="impossible">{{ listesend.statut }}</td>
+                    {% endif %}
+
                     <td>{{ listesend.message }}</td>
                     <td><a href="{{ path('admin_update', {'id':listesend.id}) }}">Editer </a></td>
                     <td><a href="{{ path('delete_liste', {'id':listesend.id}) }}">Supprimer </a></td>
-
                 </tr>
             {% endfor %}
             </table>
