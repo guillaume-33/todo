@@ -35,7 +35,7 @@
                 {% endif %}
 
                 <td>{{ liste.message }}</td>
-                <td><a href="{{ path('update_liste', {'id':liste.id}) }}">Voir la liste</a></td>
+                <td><a class="btn" href="{{ path('update_liste', {'id':liste.id}) }}">Voir la liste</a></td>
             </tr>
             {% endfor %}
         </table>
@@ -57,7 +57,7 @@
                     <th>Supprimer la liste</th>
                 </tr>
 
-                
+
             {% for listesend in listesends %}
                 <tr>
                     <td type hidden>{{ listesend.id }}</td>
@@ -76,8 +76,8 @@
                     {% endif %}
 
                     <td>{{ listesend.message }}</td>
-                    <td><a href="{{ path('admin_update', {'id':listesend.id}) }}">Editer </a></td>
-                    <td><a href="{{ path('delete_liste', {'id':listesend.id}) }}">Supprimer </a></td>
+                    <td><a class="btn" href="{{ path('admin_update', {'id':listesend.id}) }}">Editer </a></td>
+                    <td><a class="btn" href="{{ path('delete_liste', {'id':listesend.id}) }}">Supprimer </a></td>
                 </tr>
             {% endfor %}
             </table>
